@@ -10,19 +10,21 @@ namespace WebAPISample.Controllers
 {
     public class MovieController : ApiController
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<Movie> Get()
         {
-            // Retrieve all movies from db logic
-            return new string[] { "movie1 string", "movie2 string" };
+            return db.Movies.ToArray();
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public Movie Get(int id)
         {
-            // Retrieve movie by id from db logic
-            return "value";
+            Movie movie = db.Movies.FirstOrDefault(m => m.MovieId == id);
+            return movie;
         }
+
+        
 
         // POST api/values
         public void Post([FromBody]Movie value)
