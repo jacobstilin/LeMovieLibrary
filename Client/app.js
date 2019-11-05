@@ -70,16 +70,12 @@
 
 
 
+
 (function($){
     function processForm3( e ){
-        var dict = {
-            Title : this["title"].value,
-            Genre : this["genre"].value,
-        	Director: this["director"].value
-        };
-
+        var dict =  this["id"].value;
         $.ajax({
-            url: 'https://localhost:44352/api/movie',
+            url: 'https://localhost:44352/api/movie/'+ dict,
             dataType: 'json',
             type: 'get',
             contentType: 'application/json',
@@ -92,23 +88,21 @@
             }
         }).then(function(data) {
             $('tbody').html('');
-            $.each(data, function(index, value){
                 $('tbody').append(
                     "<tr>" +
-                    "<td>" + value.Title + "</td>" +
-                    "<td>" + value.Genre + "</td>" +
-                    "<td>" + value.Director + "</td>" +
-                    "<td> <form id='my-form3'> <button type='submit' value=" + value.MovieId + ">Details</button> </form> </td>" +
+                    "<td>" + data.Title + "</td>" +
+                    "<td>" + data.Genre + "</td>" +
+                    "<td>" + data.Director + "</td>" +
                     "</tr>"
                 );
-            });
         }
         )
         e.preventDefault();
     }
-
     $('#my-form3').submit( processForm3 );
-})(jQuery);
+ })(jQuery);
+
+
 
 // (function($){
 //     function processForm3( e ){
