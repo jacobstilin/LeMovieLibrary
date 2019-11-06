@@ -1,3 +1,5 @@
+
+
 (function($){
     function processForm( e ){
         var dict = {
@@ -24,11 +26,10 @@
     }
 
     $('#my-form').submit( processForm );
-})(jQuery);
+
+    
 
 
-
-(function($){
     function processForm2( e ){
         var dict = {
             Title : this["title"].value,
@@ -59,18 +60,17 @@
                     "</tr>"
                 );
             });
+            $('#my-form4').submit( processForm4 );
         }
         )
         e.preventDefault();
     }
 
     $('#my-form2').submit( processForm2 );
-})(jQuery);
+
+    
 
 
-
-
-(function($){
     function processForm3( e ){
         var dict =  this["id"].value;
         console.log(dict);
@@ -101,10 +101,10 @@
         e.preventDefault();
     }
     $('#my-form3').submit( processForm3 );
- })(jQuery);
+ 
+    
 
 
- (function($){
     function processForm4( e ){
      
         var dict = this["id"].value;
@@ -137,8 +137,10 @@
         e.preventDefault();
     }
     $('#my-form4').submit( processForm4 );
- })(jQuery);
- (function($){
+    
+ 
+    
+    
    function processForm5( e ){
        var newDict = {
            Title : this["title"].value,
