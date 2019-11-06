@@ -138,6 +138,42 @@
     }
     $('#my-form4').submit( processForm4 );
  })(jQuery);
+ (function($){
+   function processForm5( e ){
+       var newDict = {
+           Title : this["title"].value,
+           Genre : this["genre"].value,
+           Director: this["director"].value
+       };
+       var dict =  this["id"].value;
+       $.ajax({
+           url: 'https://localhost:44352/api/movie/'+ dict,
+           dataType: 'json',
+           type: 'put',
+           contentType: 'application/json',
+           data: JSON.stringify(newDict),
+           success: function( data, textStatus, jQxhr ){
+               $('#response pre').html( data );
+           },
+           error: function( jqXhr, textStatus, errorThrown ){
+               console.log( errorThrown );
+           }
+       }).then(function(data) {
+           $('tbody').html('');
+               $('tbody').append(
+                   "<tr>" +
+                   "<td>" + data.Title + "</td>" +
+                   "<td>" + data.Genre + "</td>" +
+                   "<td>" + data.Director + "</td>" +
+                   "</tr>"
+               );
+       }
+       )
+       e.preventDefault();
+   }
+   $('#my-form5').submit( processForm5 );
+})(jQuery);
+
 
 
 // (function($){
