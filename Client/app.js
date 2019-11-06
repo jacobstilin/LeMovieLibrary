@@ -50,9 +50,14 @@
                 console.log( errorThrown );
             }
         }).then(function(data) {
-            $('tbody').html('');
+            $('#movieTable').html('');
+            $('#movieHeader').append(
+                "<tr>" +
+                "<th> Title </th>" +
+                "</tr>"
+            );
             $.each(data, function(index, value){
-                $('tbody').append(
+                $('#movieTable').append(
                     "<tr>" +
                     "<td>" + value.Title + "</td>" +
                     "<td> <form id='my-form4'> <input type='hidden' id='id' name='id' value ="+value.MovieId+" > <button type='submit'>Details</button> </form> </td>" +
@@ -88,8 +93,9 @@
                 console.log( errorThrown );
             }
         }).then(function(data) {
-            $('tbody').html('');
-                $('tbody').append(
+            $('movieHeader').html('');
+            $('movieTable').html('');
+                $('movieTable').append(
                     "<tr>" +
                     "<td>" + data.Title + "</td>" +
                     "<td>" + data.Genre + "</td>" +
@@ -124,8 +130,16 @@
                 console.log( errorThrown );
             }
         }).then(function(data) {
-            
-                $('tbody').append(
+            $('#detailsHeader').html('');
+            $('#detailsTable').html('');
+            $('#detailsHeader').append(
+                "<tr>" +
+                "<th> Title </th>" +
+                "<th> Genre </th>" +
+                "<th> Director </th>" +
+                "</tr>"
+            );
+                $('#detailsTable').append(
                     "<tr>" +
                     "<td>" + data.Title + "</td>" +
                     "<td>" + data.Genre + "</td>" +
