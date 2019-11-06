@@ -31,18 +31,14 @@
 
 
     function viewTable( e ){
-        var dict = {
-            Title : this["title"].value,
-            Genre : this["genre"].value,
-        	Director: this["director"].value
-        };
+        
 
         $.ajax({
             url: 'https://localhost:44352/api/movie',
             dataType: 'json',
             type: 'get',
             contentType: 'application/json',
-            data: JSON.stringify(dict),
+            data: 1,
             success: function( data, textStatus, jQxhr ){
                 $('#response pre').html( data );
             },
