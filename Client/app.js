@@ -54,9 +54,8 @@
                 $('tbody').append(
                     "<tr>" +
                     "<td>" + value.Title + "</td>" +
-                    "<td>" + value.Genre + "</td>" +
-                    "<td>" + value.Director + "</td>" +
-                    "<td> <form id='my-form3'> <button type='submit' value=" + value.MovieId + ">Details</button> </form> </td>" +
+                    "<td> <form id='my-form4'> <input type='hidden' id='id' name='id' value ="+value.MovieId+" > <button type='submit'>Details</button> </form> </td>" +
+                    
                     "</tr>"
                 );
             });
@@ -74,6 +73,8 @@
 (function($){
     function processForm3( e ){
         var dict =  this["id"].value;
+        console.log(dict);
+        console.log(e);
         $.ajax({
             url: 'https://localhost:44352/api/movie/'+ dict,
             dataType: 'json',
@@ -102,6 +103,41 @@
     $('#my-form3').submit( processForm3 );
  })(jQuery);
 
+
+ (function($){
+    function processForm4( e ){
+     
+        var dict = this["id"].value;
+        console.log(dict);
+        console.log(e);
+        
+        $.ajax({
+            url: 'https://localhost:44352/api/movie/'+ dict,
+            dataType: 'json',
+            type: 'get',
+            contentType: 'application/json',
+            data: JSON.stringify(dict),
+            success: function( data, textStatus, jQxhr ){
+                $('#response pre').html( data );
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        }).then(function(data) {
+            
+                $('tbody').append(
+                    "<tr>" +
+                    "<td>" + data.Title + "</td>" +
+                    "<td>" + data.Genre + "</td>" +
+                    "<td>" + data.Director + "</td>" +
+                    "</tr>"
+                );
+        }
+        )
+        e.preventDefault();
+    }
+    $('#my-form4').submit( processForm4 );
+ })(jQuery);
 
 
 // (function($){
